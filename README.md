@@ -1,66 +1,59 @@
-## Foundry
+## Raffle Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### Overview
+This repository contains a Solidity smart contract implementing a decentralized raffle, built with Foundry. The contract integrates Chainlink VRF for random winner selection and Chainlink Automation for time-based upkeep, enabling automated raffle draws on Ethereum-compatible blockchains.
 
-Foundry consists of:
+### Features
+* **Chainlink VRF**: Uses Chainlink VRF v2.5 for provably fair random winner selection.
+* **Chainlink Automation**: Time-based upkeep triggers raffle draws automatically.
+* **Customizable**: Configurable entry fee, raffle duration, and maximum participants.
+* **Event Emission**: Emits events for entry, winner selection, and raffle completion.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### Installation
+1. **Prerequisites**:
+   * Foundry installed (forge and cast)
 
-## Documentation
+2. **Clone Repository**:
+    ```bash
+    git clone https://github.com/Heavens01/Raffle-Contract
+    cd Raffle-Contract
+    ```
 
-https://book.getfoundry.sh/
+3. **Install Dependencies**:
+    ```bash
+    forge install
+    ```
 
-## Usage
+### Usage
 
-### Build
+1. **Contract Deployment**:
+    * Update script/DeployRaffle.s.sol with desired raffle parameters (entry fee, duration, VRF coordinator, subscription ID).
+    * Deploy using Foundry:
+    Edit the commented parameter in script/HelperConfig correctly and save.
+    Then:
+    ```bash
+    forge script script/DeployRaffle.s.sol --rpc-url <rpc-url> --account <keystore-name> --broadcast
+    ```
 
-```shell
-$ forge build
-```
+2. **Interacting with the Contract**:
+    * Use cast or ethers.js/web3.js to interact with the deployed contract.
+    * Example (cast for Basic NFT):
+    ```bash
+    cast call <contract-address> "getRecentWinner()(address)"
+    ```
 
-### Test
+3. **Testing**
+    * Run unit tests using Foundry:
+    ```bash
+    forge test
+    ```
 
-```shell
-$ forge test
-```
 
-### Format
+### Security
 
-```shell
-$ forge fmt
-```
+1. **Audits**: Ensure the contract is audited before deployment to mainnet.
+2. **Best Practices**: This contract follows OpenZeppelin's ERC721 implementation guidelines.
 
-### Gas Snapshots
+### License
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+MIT License.
