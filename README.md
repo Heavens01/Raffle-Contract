@@ -52,7 +52,6 @@ This repository contains a Solidity smart contract implementing a decentralized 
 ### Security
 
 1. **Audits**: Ensure the contract is audited before deployment to mainnet.
-2. **Best Practices**: This contract follows OpenZeppelin's ERC721 implementation guidelines.
 
 ### License
 
